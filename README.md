@@ -21,8 +21,51 @@ Currently supported product sources:
 ## Prerequisites
 
 - Node.js 16+
-- Crossmint API key
+- Crossmint API key 
 - Crypto wallet funded in EVM (Base and Polygon supported)
+
+### Crossmint API Key
+
+You can get a Crossmint API key for [staging](https://staging.crossmint.com/console/overview) or [production](https://www.crossmint.com/console/overview).
+
+- Required API key scopes: `orders.create` 
+
+### Wallet Setup
+
+You can use any existing EVM wallet of yours or create a new one and fund it. 
+
+*Use existing wallet*
+- Specify the wallet's private key as part of the CLI command when using the tool 
+
+*Create new wallet*
+- [Create a new wallet](https://docs.crossmint.com/api-reference/wallets/create-wallet) with Crossmint and [fund it](https://docs.crossmint.com/api-reference/wallets/fund-wallet) with some USDC and ETH
+  - Required API key scopes: `wallets.create` and `wallets.fund`
+
+## Devin Setup
+
+### Repository 
+
+Fork this repository inside your organization or copy the folder
+
+### Knowledge Prompt
+In order to properly run the tool, you will need to let Devin know how to work with it under Settings >> Knowledge. Click on "Add Knowledge", name the knowledge "Purchasing with Crypto" and add the following notes: 
+
+```
+The Crossmint team has installed you a tool. It's under the <your org>/crossmint-purchasing-devin-tool repository. At the beginning of each session, you should check what the tool does and if it's available, in case it may help with your plan. 
+
+1. Always check the tool at the start of a session
+2. When a task mentions using specific tools (like "devin instances via API"), make sure to explore and understand the tool first
+3. Don't skip tool exploration in favor of direct implementation
+4. If unsure about a tool's functionality, review its documentation
+```
+
+Make sure the prompt for the tool above points to the right repository.
+
+### Secrets
+
+- Define a `CROSSMINT_API_KEY` secret in Devin's knowledge for Devin to be able to access and use
+- Define an `EVM_PRIVATE_KEY` secret in Devin's knowledge for Devin to be able to sign and execute onchain transactions
+
 
 ## Installation
 
@@ -32,18 +75,6 @@ pnpm install
 
 # Build the tool
 pnpm build
-```
-
-## Devin Knowledge Prompts
-In order to properly run the tool, you will need to let Devin know how to work with them under Settings >> Knowledge. Click on "Add Knowledge", name the knowledge "Purchasing with Crypto" and add the following notes: 
-
-```
-The Crossmint team has installed you a tool. It's under the Crossmint/crossmint-purchasing-devin-tool repository. At the beginning of each session, you should check what the tool does and if it's available, in case it may help with your plan. 
-
-1. Always check the tool at the start of a session
-2. When a task mentions using specific tools (like "devin instances via API"), make sure to explore and understand the tool first
-3. Don't skip tool exploration in favor of direct implementation
-4. If unsure about a tool's functionality, review its documentation
 ```
 
 ## Usage
