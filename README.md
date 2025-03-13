@@ -2,6 +2,8 @@
 
 A CLI tool for Devin to buy physical products. It pays using cryptocurrency via [Crossmint's Headless Checkout API](https://docs.crossmint.com/nft-checkout/headless/guides/physical-good-purchases). 
 
+Questions? DM [@flymperopoulos](https://x.com/flymperopoulos) or [@alfongj](https://x.com/alfongj) on X.
+
 ## Overview
 
 This tool allows Devin to purchase physical products from various sources. It is entirely headless,
