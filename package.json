@@ -1,0 +1,44 @@
+{
+  "name": "crypto-physical-buyer",
+  "version": "1.0.0",
+  "description": "A tool for buying physical products using cryptocurrency via Crossmint's Headless Checkout API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "crypto-physical-buyer": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "cli": "node dist/cli.js",
+    "dev": "ts-node src/cli.ts",
+    "test": "jest",
+    "lint": "eslint . --ext .ts"
+  },
+  "keywords": [
+    "amazon",
+    "crypto",
+    "crossmint",
+    "checkout",
+    "devin"
+  ],
+  "author": "Devin AI",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^5.7.2",
+    "inquirer": "^8.2.5"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.5",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.24",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
