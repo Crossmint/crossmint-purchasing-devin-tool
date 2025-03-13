@@ -1,24 +1,34 @@
 # Crossmint Purchasing Devin Tool
 
-A tool for buying physical products using cryptocurrency via [Crossmint's Headless Checkout API](https://docs.crossmint.com/nft-checkout/headless/guides/physical-good-purchases).
+A CLI tool for Devin to buy physical products. It pays using cryptocurrency via [Crossmint's Headless Checkout API](https://docs.crossmint.com/nft-checkout/headless/guides/physical-good-purchases). 
 
 ## Overview
 
-This tool allows Devin to purchase physical products from various sources using cryptocurrency from a wallet funded in EVM (Base and Polygon supported). It leverages Crossmint's Headless Checkout API to handle the payment processing and order fulfillment.
+This tool allows Devin to purchase physical products from various sources. It is entirely headless,
+not requiring any slow and unreliable browser automations, and sidestepping automated bot prevention
+such as captchas, typical on e-commerce websites like Amazon. 
 
-Currently supported product sources:
-- Amazon
+To use this tool, you must copy this code in a repo Devin has access to, set up an API key and crypto
+wallet for Devin as secrets, and fill it up with USDC.
+
+## Under the hood
+
+This is a CLI tool wrapping [Crossmint's Headless Checkout API](https://docs.crossmint.com/nft-checkout/headless/guides/physical-good-purchases). 
+
+It takes a URL or product ID, desired payment method (including crypto) and shipping information, and it returns 
+a transaction that, when signed, will cause the product to be delivered. 
+
+Crossmint acts as merchant of record, takes care of shipping, and acts as merchant of record. 
 
 ## Features
 
 - Purchase physical products using cryptocurrency
 - Support for multiple product sources (currently Amazon, with more to come)
-- Support for both product URLs and product IDs
-- Configurable shipping address
-- Integration with EVM (Base and Polygon) for payments
-- Order status tracking
+- Same price as Amazon Prime, incl free shipping
+- Payment can be token across most EVM chains (e.g. Polygon, Base)
+- US only for now
 
-## Prerequisites
+## Code setup
 
 - Node.js 16+
 - Crossmint API key 
@@ -26,7 +36,7 @@ Currently supported product sources:
 
 ### Crossmint API Key
 
-You can get a Crossmint API key for [staging](https://staging.crossmint.com/console/overview) or [production](https://www.crossmint.com/console/overview).
+Get a server-side Crossmint API key on [its console](https://www.crossmint.com/console/overview).
 
 - Required API key scopes: `orders.create` 
 
@@ -38,25 +48,27 @@ You can use any existing EVM wallet of yours or create a new one and fund it.
 - Specify the wallet's private key as part of the CLI command when using the tool 
 
 *Create new wallet*
-- [Create a new wallet](https://docs.crossmint.com/api-reference/wallets/create-wallet) with Crossmint and [fund it](https://docs.crossmint.com/api-reference/wallets/fund-wallet) with some USDC and ETH
+- [Create a new wallet](https://docs.crossmint.com/api-reference/wallets/create-wallet) with Crossmint and fund it with some USDC and ETH
   - Required API key scopes: `wallets.create` and `wallets.fund`
+ 
+You can obtain USDC and ETH on coinbase (or ping the Crossmint team for help).
 
 ## Devin Setup
 
 ### Repository 
 
-Fork this repository inside your organization or copy the folder
+Fork this repository inside your organization or copy the folder into an existing repo that Devin has access to. 
+
+then, on Devin's machine, run the installation steps below, so it's ready to use.
 
 ### Knowledge Prompt
-In order to properly run the tool, you will need to let Devin know how to work with it under Settings >> Knowledge. Click on "Add Knowledge", name the knowledge "Purchasing with Crypto" and add the following notes: 
+Let Devin know about the tool under Settings >> Knowledge. Click on "Add Knowledge", name the knowledge "Purchasing items" and add the following notes: 
 
 ```
-The Crossmint team has installed you a tool. It's under the <your org>/crossmint-purchasing-devin-tool repository. At the beginning of each session, you should check what the tool does and if it's available, in case it may help with your plan. 
-
-1. Always check the tool at the start of a session
-2. When a task mentions using specific tools (like "devin instances via API"), make sure to explore and understand the tool first
-3. Don't skip tool exploration in favor of direct implementation
-4. If unsure about a tool's functionality, review its documentation
+You have a tool available to purchase amazon items programmatically.
+It's in <path where tool was installed>.
+If a user asks you to buy something, use this tool.
+You can learn how to invoke the tool by reading the README.md file, Usage section
 ```
 
 Make sure the prompt for the tool above points to the right repository.
@@ -65,7 +77,6 @@ Make sure the prompt for the tool above points to the right repository.
 
 - Define a `CROSSMINT_API_KEY` secret in Devin's knowledge for Devin to be able to access and use
 - Define an `EVM_PRIVATE_KEY` secret in Devin's knowledge for Devin to be able to sign and execute onchain transactions
-
 
 ## Installation
 
@@ -78,6 +89,7 @@ pnpm build
 ```
 
 ## Usage
+These instructions are for Devin
 
 ```bash
 # Using an Amazon product URL (direct method)
