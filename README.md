@@ -1,6 +1,6 @@
-# Crypto Physical Buyer
+# Crossmint Purchasing Devin Tool
 
-A tool for buying physical products using cryptocurrency via Crossmint's Headless Checkout API.
+A tool for buying physical products using cryptocurrency via [Crossmint's Headless Checkout API](https://docs.crossmint.com/nft-checkout/headless/guides/physical-good-purchases).
 
 ## Overview
 
