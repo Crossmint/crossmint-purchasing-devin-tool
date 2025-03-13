@@ -1,6 +1,8 @@
-# Crossmint Purchasing Devin Tool
+# Devin Tool for Purchasing Physical Products
 
 A CLI tool for Devin to buy physical products. It pays using cryptocurrency via [Crossmint's Headless Checkout API](https://docs.crossmint.com/nft-checkout/headless/guides/physical-good-purchases). 
+
+![image](https://github.com/user-attachments/assets/a0f6ae07-5799-4aad-98fc-28982156ef0c)
 
 Questions? DM [@flymperopoulos](https://x.com/flymperopoulos) or [@alfongj](https://x.com/alfongj) on X.
 
